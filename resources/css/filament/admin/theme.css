@@ -1,0 +1,133 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+:root {
+    /* colors */
+    --hover-color: #b3b3be;
+    --muted-color: #9f9fa9;
+
+    /* sizes */
+    --subheading: 0.875rem;
+    --value: 1.5rem;
+}
+
+.heading {
+    font-size: 1.2rem;
+}
+
+.dark .heading {
+    color: whitesmoke;
+}
+
+/*  ajustes parrafo:
+    - en moviles el text "lead" se situa en su propia línea. en escritorio, al lado de la descripcion.
+    - colores del estado
+*/
+.funnel-breakdown {
+    display: grid;
+    row-gap: calc(0.25rem * 2);
+
+    .subheading {
+        font-size: var(--subheading);
+        color: var(--muted-color);
+    }
+
+    .funnel-wrap {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+    }
+
+    .funnel-stage {
+        flex: 1;
+        
+        .funnel-label { margin-block: .5rem; }
+
+        strong { font-size: var(--value); }
+        
+        .funnel-description {
+            margin-block-start: .5rem;
+
+            &.good .lead { color: #22c55e; }
+            &.medium .lead { color: #eab308; }
+            &.bad .lead { color: #ef4444; }
+
+            .lead {
+                font-weight: 600;
+                display: block;
+            }
+        }
+    }
+
+    .funnel-top {
+        /* border: 1px solid rgba(255, 255, 255, 0.3); */
+        border-radius: 0.75rem;
+        margin-block: 1rem;
+        padding: .5rem;
+        text-align: center;
+        background: linear-gradient(90deg, #4f46e5, #c963f1, #3b82f6);
+    }
+}
+
+.volume-overview {
+    .volume-stats {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat {
+        margin-block-end: 1.8rem;
+
+        &:last-child { margin-block-end: 0; }
+
+        .label { font-size: var(--subheading); }
+
+        .value {
+            font-size: var(--value);
+            text-align: center;
+            padding-block-start: .4rem;
+        }
+    }
+}
+
+.performance-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .performance-card {
+        flex: 1;
+        
+        .label { color: var(--muted-color); }
+
+        .idea {
+            padding-block-start: .4rem;
+            font-size: var(--value);
+            transition: color 250ms ease;
+
+            &:hover { color: var(--hover-color); }
+        }
+    }
+}
+
+@media (min-width: 1280px) {
+    .funnel-breakdown .funnel-stage .funnel-description .lead {
+        display: inline;
+    }
+
+    .volume-overview .volume-stats {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .volume-overview .stat {
+        margin-block-end: 0;
+    }
+
+    .performance-summary {
+        flex-direction: row;
+    }
+}
